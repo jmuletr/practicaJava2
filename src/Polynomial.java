@@ -12,43 +12,105 @@ public class Polynomial {
     public Polynomial(float[] cfs) {
         int exp = cfs.length - 1;
         int fact;
+
         for (int i = 0; i < cfs.length; i++) {
-            fact = (int)cfs[i];
-            if (cfs[i] == 0 && exp >= 0){
+            fact = (int) cfs[i];
+            if (fact == 0 && exp >= 0) {
                 exp--;
-                if (i == cfs.length - 1){
+
+                if (i == cfs.length - 1) {
                     this.coefs = "0";
-                }
-            }else{
+                }continue;
+            } else {
                 //nombres positius
-                if (cfs[i] >= 0){
+                if (fact >= 0) {
                     //primer valor sense signe
-                    if (i == 0){
-                        if (exp > 0){
+                    if (i == 0) {
+                        if (exp > 0) {
                             if (fact == 1) {
                                 this.coefs = "x";
-                            }else if (cfs[i] > 1) {
+                            } else if (fact > 1) {
                                 this.coefs = Integer.toString(fact);
+                                this.coefs += "x";
+                                if (exp > 1) {
+                                    this.coefs += "^" + exp;
+                                }
                             }
                             //exponent 0
-                        }else if (fact == 0){
+                        } else if (fact == 0) {
                             this.coefs = "0";
+                        }else if (fact > 0){
+                            this.coefs += " + " + fact;
                         }
-                        exp--;
-                    }else if (i > 0){
-                        this.coefs += " + ";
-                        if (exp == 0){
-                            if (fact == 0){
-                                this.coefs = "0";
-                            } else this.coefs += fact;
-                        }
-                    }
-                    //nombres negatius
-                } else if (cfs[i] < 0){
 
-                }
+                        //valors amb signe
+                    } else if (i > 0) {
+                        this.coefs += " + ";
+                        if (exp == 0) {
+                            if (fact == 0) {
+                                this.coefs += "0";
+                            } else if (fact > 0){
+                                this.coefs += fact;
+                            }
+                        } else if (exp > 0) {
+                                if (fact == 1) {
+                                    this.coefs += "x";
+                                } else if (fact > 1) {
+                                    this.coefs += Integer.toString(fact);
+                                    this.coefs += "x";
+                                    if (exp > 1) {
+                                        this.coefs += "^" + exp;
+                                    }
+
+                            }
+                        }else this.coefs += fact;
+                        //nombres negatius
+                    } }else if (fact < 0) {
+                        if (i == 0) {
+                            this.coefs ="-";
+                            fact = fact * -1;
+                            if (exp > 0) {
+                                if (fact == 1) {
+                                    this.coefs += "x";
+                                } else if (fact > 1) {
+                                    this.coefs += Integer.toString(fact);
+                                    this.coefs += "x";
+                                    if (exp > 1) {
+                                        this.coefs += "^" + exp;
+                                    }
+                                }
+                            }
+                            //valors amb signe
+                        } else if (i > 0) {
+                            this.coefs += " - ";
+                            if (exp == 0) {
+                                if (fact == 0) {
+                                    this.coefs += "0";
+                                } else if (fact < 0){
+                                    fact = fact * -1;
+                                    this.coefs += fact;
+                                }
+                            } else if (exp > 0) {
+                                if (exp > 0) {
+                                    if (fact == 1) {
+                                        this.coefs += "x";
+                                    } else if (fact > 1) {
+                                        this.coefs += Integer.toString(fact);
+                                        this.coefs += "x";
+                                        if (exp > 1) {
+                                            this.coefs += "^" + exp;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
             }
+            exp--;
         }
+
     }
 
     // Constructor a partir d'un string
@@ -79,6 +141,12 @@ public class Polynomial {
     // Torna "true" si els polinomis són iguals. Això és un override d'un mètode de la classe Object
     @Override
     public boolean equals(Object o) {
+        if (o instanceof Polynomial){
+            Polynomial p2 = (Polynomial)o;
+            if (p2.toString().equals(o.toString())){
+                return true;
+            }
+        }
         return false;
     }
 
