@@ -17,8 +17,22 @@ public class Polynomial {
     public Polynomial(String s) {
         s = s.replace("- ", "-");
         s = s.replace("+ ", "+");
-        String[] monomios = s.split(" ");
-        System.out.println(Arrays.deepToString(monomios));
+        String[] monomial = s.split(" ");
+        System.out.println(Arrays.deepToString(monomial));
+        String[][] coefExp = new String[2][monomial.length];
+        int coef;
+        for (int i = 0; i < monomial.length; i++) {
+            if (monomial[i].contains("x")){
+                if (monomial[i].matches("(\\d[x])(.*)")){
+                    coef = Integer.parseInt(monomial[i].substring(0,monomial[i].indexOf('x')));
+                    coefExp[0][i] = Integer.toString(coef);
+                } else {coefExp[0][i] = "1";}
+
+            }else if (!monomial[i].contains("x")){
+                coef = Integer.parseInt(monomial[i]);
+                coefExp[0][i] = Integer.toString(coef);
+            }
+        }
     }
 
     // Suma el polinomi amb un altre. No modifica el polinomi actual (this). Genera un de nou
