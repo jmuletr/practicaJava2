@@ -128,7 +128,9 @@ public class Polynomial {
 
     // Constructor a partir d'un string
     public Polynomial(String s) {
-        String[] monomios = s.split(" [+\\-]");
+        s = s.replace("- ", "-");
+        s = s.replace("+ ", "+");
+        String[] monomios = s.split(" ");
         System.out.println(monomios.toString());
     }
 
