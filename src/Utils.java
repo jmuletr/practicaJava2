@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Created by jmuletr on 2/02/17.
  */
@@ -135,7 +138,7 @@ public class Utils {
                         coefExp[1][i] = Integer.toString(exp);
                     }else coefExp[1][i] = "1";
                 } else {
-                    coefExp[0][i] = "1";
+                    if (monomial[i].matches("[-][x]\\^\\d*")){coefExp[0][i] = "-1";}else coefExp[0][i] = "1";
                     if (monomial[i].matches(".*[x]\\^\\d*")){
                         exp = Integer.parseInt(monomial[i].substring(monomial[i].indexOf('^')+1));
                         coefExp[1][i] = Integer.toString(exp);
@@ -147,6 +150,34 @@ public class Utils {
                 coefExp[1][i] = "0";
             }
         }
+        coefExp = order(coefExp);
         return coefExp;
+    }
+
+    static String[][] order(String[][] s){
+        String[][] s2 = new String[2][s[0].length];
+        String[] order = new String[s[0].length];
+        for (int i = 0; i < order.length; i++) {
+            order[i] = s[1][i];
+        }
+        Arrays.sort(order, Collections.reverseOrder());
+        for (int i = 0; i < order.length; i++) {
+            for (int x = 0; x < order.length; x++) {
+                System.out.println("order= "+order[i]+" s= "+s[1][x]);
+                if (order[i] == s[1][x]){
+                    s2[0][i] = s[0][x];
+                    s2[1][i] = s[1][x];
+                    System.out.println(Arrays.deepToString(s));
+                    s[1][x] = null;
+                    break;
+                }
+            }
+        }
+        return s2;
+    }
+
+    static float sToFloat(String[][] s){
+
+        return 0.0f;
     }
 }

@@ -2,21 +2,21 @@ import java.util.Arrays;
 
 
 public class Polynomial {
-    private float[] coef;
-    private String coefs;
+    private float[] coef = {0f};
+    private String coefs = "0";
     // Constructor per defecte. Genera un polinomi zero
-    public Polynomial() {
-        this.coefs = "0";
-    }
+    public Polynomial() {}
 
     // Constructor a partir dels coeficients del polinomi en forma d'array
     public Polynomial(float[] cfs) {
         this.coefs = Utils.fToString(cfs);
+        this.coef = cfs;
     }
 
     // Constructor a partir d'un string
     public Polynomial(String s) {
-
+        //this.coef = Utils.
+        String[][] cfs = Utils.identifyFact(s);
     }
 
     // Suma el polinomi amb un altre. No modifica el polinomi actual (this). Genera un de nou
