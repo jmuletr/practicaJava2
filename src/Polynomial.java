@@ -16,34 +16,7 @@ public class Polynomial {
 
     // Constructor a partir d'un string
     public Polynomial(String s) {
-        s = s.replace("- ", "-");
-        s = s.replace("+ ", "+");
-        String[] monomial = s.split(" ");
-        System.out.println(Arrays.deepToString(monomial));
-        String[][] coefExp = new String[2][monomial.length];
-        int coef, exp;
-        for (int i = 0; i < monomial.length; i++) {
-            if (monomial[i].contains("x")){
-                if (monomial[i].matches(".*\\d[x].*")){
-                    coef = Integer.parseInt(monomial[i].substring(0,monomial[i].indexOf('x')));
-                    coefExp[0][i] = Integer.toString(coef);
-                    if (monomial[i].matches(".*\\d[x]\\^\\d*")){
-                        exp = Integer.parseInt(monomial[i].substring(monomial[i].indexOf('^')+1));
-                        coefExp[1][i] = Integer.toString(exp);
-                    }else coefExp[1][i] = "1";
-                } else {
-                    coefExp[0][i] = "1";
-                    if (monomial[i].matches(".*[x]\\^\\d*")){
-                        exp = Integer.parseInt(monomial[i].substring(monomial[i].indexOf('^')+1));
-                        coefExp[1][i] = Integer.toString(exp);
-                    }else coefExp[1][i] = "1";
-                }
-            }else if (!monomial[i].contains("x")){
-                coef = Integer.parseInt(monomial[i]);
-                coefExp[0][i] = Integer.toString(coef);
-                coefExp[1][i] = "0";
-            }
-        }
+
     }
 
     // Suma el polinomi amb un altre. No modifica el polinomi actual (this). Genera un de nou

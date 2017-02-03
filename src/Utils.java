@@ -118,4 +118,35 @@ public class Utils {
         }
         return coefs;
     }
+
+    static String[][] identifyFact(String s){
+        s = s.replace("- ", "-");
+        s = s.replace("+ ", "+");
+        String[] monomial = s.split(" ");
+        String[][] coefExp = new String[2][monomial.length];
+        int coef, exp;
+        for (int i = 0; i < monomial.length; i++) {
+            if (monomial[i].contains("x")){
+                if (monomial[i].matches(".*\\d[x].*")){
+                    coef = Integer.parseInt(monomial[i].substring(0,monomial[i].indexOf('x')));
+                    coefExp[0][i] = Integer.toString(coef);
+                    if (monomial[i].matches(".*\\d[x]\\^\\d*")){
+                        exp = Integer.parseInt(monomial[i].substring(monomial[i].indexOf('^')+1));
+                        coefExp[1][i] = Integer.toString(exp);
+                    }else coefExp[1][i] = "1";
+                } else {
+                    coefExp[0][i] = "1";
+                    if (monomial[i].matches(".*[x]\\^\\d*")){
+                        exp = Integer.parseInt(monomial[i].substring(monomial[i].indexOf('^')+1));
+                        coefExp[1][i] = Integer.toString(exp);
+                    }else coefExp[1][i] = "1";
+                }
+            }else if (!monomial[i].contains("x")){
+                coef = Integer.parseInt(monomial[i]);
+                coefExp[0][i] = Integer.toString(coef);
+                coefExp[1][i] = "0";
+            }
+        }
+        return coefExp;
+    }
 }
