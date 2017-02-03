@@ -190,11 +190,21 @@ public class Utils {
     }
 
     static float[] sToFloat(String[][] s){
-        int maxExp = Integer.parseInt(s[1][0]);
+        boolean y = false;
+        //notNull
+        int nN = 0;
+        for (int i = 0; y != true; i++) {
+            if (s[0][i] != null){
+                nN = i;
+                y = true;
+            }
+        }
+
+        int maxExp = Integer.parseInt(s[1][nN]);
         int counter = 0;
         int counter2 = 0;
         float[] coef = new float[maxExp + 1];
-        for (int i = 0; counter2 < Integer.parseInt(s[1][0]) + 1; i++) {
+        for (int i = 0; counter2 < Integer.parseInt(s[1][nN]) + 1; i++) {
             if (s[0][counter] != null){
                 if (maxExp == Integer.parseInt(s[1][counter])){
                     coef[counter2] = Integer.parseInt(s[0][counter]);
