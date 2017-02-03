@@ -194,7 +194,7 @@ public class Utils {
         int counter = 0;
         int counter2 = 0;
         float[] coef = new float[maxExp + 1];
-        for (int i = 0; i < Integer.parseInt(s[1][0]) + 1; i++) {
+        for (int i = 0; counter2 < Integer.parseInt(s[1][0]) + 1; i++) {
             if (s[0][counter] != null){
                 if (maxExp == Integer.parseInt(s[1][counter])){
                     coef[counter2] = Integer.parseInt(s[0][counter]);
