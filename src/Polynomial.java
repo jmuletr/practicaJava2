@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class Polynomial {
     private float[] coef = {0f};
-    private String coefs = "0";
+    private String coefs;
     // Constructor per defecte. Genera un polinomi zero
     public Polynomial() {}
 

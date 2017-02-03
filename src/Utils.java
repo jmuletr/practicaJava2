@@ -5,16 +5,23 @@ import java.util.Collections;
  * Created by jmuletr on 2/02/17.
  */
 public class Utils {
+    //ToDo reparar fToString
     static String fToString(float[] cfs){
         int exp = cfs.length - 1;
         int fact;
+        int first = 0;
+        boolean isFirst = false;
         String coefs ="";
         for (int i = 0; i < cfs.length; i++) {
             fact = (int) cfs[i];
+            if (cfs[i] != 0 && isFirst == false){
+                first = i;
+                isFirst = true;
+            }
             if (fact == 0 && exp >= 0) {
                 exp--;
 
-                if (i == cfs.length - 1) {
+                if (i == cfs.length - 1 && coefs == "") {
                     coefs = "0";
                 }
                 continue;
@@ -22,7 +29,7 @@ public class Utils {
                 //nombres positius
                 if (fact >= 0) {
                     //primer valor sense signe
-                    if (i == 0) {
+                    if (i == first) {
                         if (exp > 0) {
                             if (fact == 1) {
                                 coefs = "x";
