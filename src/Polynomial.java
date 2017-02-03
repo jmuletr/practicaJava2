@@ -11,7 +11,7 @@ public class Polynomial {
 
     // Constructor a partir dels coeficients del polinomi en forma d'array
     public Polynomial(float[] cfs) {
-        this.coefs = Util.fToString(cfs);
+        this.coefs = Utils.fToString(cfs);
     }
 
     // Constructor a partir d'un string

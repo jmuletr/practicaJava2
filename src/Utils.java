@@ -1,7 +1,7 @@
 /**
  * Created by jmuletr on 2/02/17.
  */
-public class Util {
+public class Utils {
     static String fToString(float[] cfs){
         int exp = cfs.length - 1;
         int fact;
