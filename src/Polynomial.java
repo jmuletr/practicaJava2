@@ -1,5 +1,6 @@
 import java.util.Arrays;
 
+
 public class Polynomial {
     private float[] coef;
     private String coefs;
@@ -23,7 +24,7 @@ public class Polynomial {
         int coef;
         for (int i = 0; i < monomial.length; i++) {
             if (monomial[i].contains("x")){
-                if (monomial[i].matches("(\\d[x])(.*)")){
+                if (monomial[i].matches(".*\\d[x].*")){
                     coef = Integer.parseInt(monomial[i].substring(0,monomial[i].indexOf('x')));
                     coefExp[0][i] = Integer.toString(coef);
                 } else {coefExp[0][i] = "1";}
@@ -31,6 +32,7 @@ public class Polynomial {
             }else if (!monomial[i].contains("x")){
                 coef = Integer.parseInt(monomial[i]);
                 coefExp[0][i] = Integer.toString(coef);
+                coefExp[1][i] = "0";
             }
         }
     }
