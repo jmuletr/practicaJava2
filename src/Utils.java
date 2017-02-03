@@ -205,18 +205,20 @@ public class Utils {
         int counter2 = 0;
         float[] coef = new float[maxExp + 1];
         for (int i = 0; counter2 < Integer.parseInt(s[1][nN]) + 1; i++) {
-            if (s[0][counter] != null){
-                if (maxExp == Integer.parseInt(s[1][counter])){
-                    coef[counter2] = Integer.parseInt(s[0][counter]);
-                    counter++;
-                    counter2++;
-                    maxExp--;
-                }else{
-                    coef[counter2] = 0;
-                    maxExp--;
-                    counter2++;
-                }
-            }else counter++;
+            if (counter < s[0].length){
+                if (s[0][counter] != null){
+                    if (maxExp == Integer.parseInt(s[1][counter])){
+                        coef[counter2] = Integer.parseInt(s[0][counter]);
+                        counter++;
+                        counter2++;
+                        maxExp--;
+                    }else{
+                        coef[counter2] = 0;
+                        maxExp--;
+                        counter2++;
+                    }
+                }else counter++;
+            }else counter2++;
         }
         return coef;
     }

@@ -51,10 +51,10 @@ public class PolynomialTest {
 
         p = new Polynomial("3 - 3");
         assertEquals("0", p.toString());
-*/
+
         p = new Polynomial("3x - 3x");
         assertEquals("0", p.toString());
-
+*/
         p = new Polynomial("0x^2 + 6x + 0");
         assertEquals("6x", p.toString());
     }
