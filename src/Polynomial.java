@@ -15,8 +15,9 @@ public class Polynomial {
 
     // Constructor a partir d'un string
     public Polynomial(String s) {
-        //this.coef = Utils.
         String[][] cfs = Utils.identifyFact(s);
+        this.coef = Utils.sToFloat(cfs);
+        this.coefs = Utils.fToString(this.coef);
     }
 
     // Suma el polinomi amb un altre. No modifica el polinomi actual (this). Genera un de nou

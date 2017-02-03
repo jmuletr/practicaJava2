@@ -163,21 +163,51 @@ public class Utils {
         Arrays.sort(order, Collections.reverseOrder());
         for (int i = 0; i < order.length; i++) {
             for (int x = 0; x < order.length; x++) {
-                System.out.println("order= "+order[i]+" s= "+s[1][x]);
                 if (order[i] == s[1][x]){
                     s2[0][i] = s[0][x];
                     s2[1][i] = s[1][x];
-                    System.out.println(Arrays.deepToString(s));
                     s[1][x] = null;
                     break;
                 }
             }
         }
+        s2 = add(s2);
         return s2;
     }
 
-    static float sToFloat(String[][] s){
+    private static String[][] add(String[][] s) {
+        int val1, val2;
+        for (int i = 0; i < s[0].length - 1; i++) {
+            if (Integer.parseInt(s[1][i]) == Integer.parseInt(s[1][i + 1])){
+                val1 = Integer.parseInt(s[0][i]);
+                val2 = Integer.parseInt(s[0][i + 1]);
+                s[0][i + 1] = Integer.toString(val1 + val2);
+                s[0][i] = null;
+                s[1][i] = null;
+            }
+        }
+        return s;
+    }
 
-        return 0.0f;
+    static float[] sToFloat(String[][] s){
+        int maxExp = Integer.parseInt(s[1][0]);
+        int counter = 0;
+        int counter2 = 0;
+        float[] coef = new float[maxExp + 1];
+        for (int i = 0; i < Integer.parseInt(s[1][0]) + 1; i++) {
+            if (s[0][counter] != null){
+                if (maxExp == Integer.parseInt(s[1][counter])){
+                    coef[counter2] = Integer.parseInt(s[0][counter]);
+                    counter++;
+                    counter2++;
+                    maxExp--;
+                }else{
+                    coef[counter2] = 0;
+                    maxExp--;
+                    counter2++;
+                }
+            }else counter++;
+        }
+        return coef;
     }
 }
