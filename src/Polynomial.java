@@ -5,7 +5,9 @@ public class Polynomial {
     private float[] coef = {0f};
     private String coefs;
     // Constructor per defecte. Genera un polinomi zero
-    public Polynomial() {}
+    public Polynomial() {
+        this.coefs = "0";
+    }
 
     // Constructor a partir dels coeficients del polinomi en forma d'array
     public Polynomial(float[] cfs) {
