@@ -22,7 +22,16 @@ public class Polynomial {
 
     // Suma el polinomi amb un altre. No modifica el polinomi actual (this). Genera un de nou
     public Polynomial add(Polynomial p) {
-        return null;
+        if(p.coefs.charAt(0) == '-'){
+            String s2 = " - " + p.coefs.substring(1);
+            p.coefs = s2;
+        }
+        else{
+            String s2 = " + " + p.coefs;
+            p.coefs = s2;
+        }
+        Polynomial polyAdd = new Polynomial(this.coefs +""+ p.coefs);
+        return polyAdd;
     }
 
     // Multiplica el polinomi amb un altre. No modifica el polinomi actual (this). Genera un de nou
