@@ -1,38 +1,35 @@
-import java.util.Arrays;
-
-
 public class Polynomial {
-    private float[] coef = {0f};
-    private String coefs;
+    private float[] cof = {0f};
+    private String cofStr;
     // Constructor per defecte. Genera un polinomi zero
     public Polynomial() {
-        this.coefs = "0";
+        this.cofStr = "0";
     }
 
     // Constructor a partir dels coeficients del polinomi en forma d'array
     public Polynomial(float[] cfs) {
-        this.coefs = Utils.fToString(cfs);
-        this.coef = cfs;
+        this.cofStr = Utils.fToString(cfs);
+        this.cof = cfs;
     }
 
     // Constructor a partir d'un string
     public Polynomial(String s) {
         String[][] cfs = Utils.identifyFact(s);
-        this.coef = Utils.sToFloat(cfs);
-        this.coefs = Utils.fToString(this.coef);
+        this.cof = Utils.sToFloat(cfs);
+        this.cofStr = Utils.fToString(this.cof);
     }
 
     // Suma el polinomi amb un altre. No modifica el polinomi actual (this). Genera un de nou
     public Polynomial add(Polynomial p) {
-        if(p.coefs.charAt(0) == '-'){
-            String s2 = " - " + p.coefs.substring(1);
-            p.coefs = s2;
+        if(p.cofStr.charAt(0) == '-'){
+            String s2 = " - " + p.cofStr.substring(1);
+            p.cofStr = s2;
         }
         else{
-            String s2 = " + " + p.coefs;
-            p.coefs = s2;
+            String s2 = " + " + p.cofStr;
+            p.cofStr = s2;
         }
-        Polynomial polyAdd = new Polynomial(this.coefs +""+ p.coefs);
+        Polynomial polyAdd = new Polynomial(this.cofStr +""+ p.cofStr);
         return polyAdd;
     }
 
@@ -67,6 +64,6 @@ public class Polynomial {
     // Torna la representació en forma de String del polinomi. Override d'un mètode de la classe Object
     @Override
     public String toString() {
-        return this.coefs;
+        return this.cofStr;
     }
 }

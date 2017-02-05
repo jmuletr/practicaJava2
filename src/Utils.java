@@ -211,7 +211,7 @@ public class Utils {
         int counter = 0;
         int counter2 = 0;
         float[] coef = new float[maxExp + 1];
-        for (int i = 0; counter2 < Integer.parseInt(s[1][nN]) + 1; i++) {
+        while ( counter2 < Integer.parseInt(s[1][nN]) + 1) {
             if (counter < s[0].length){
                 if (s[0][counter] != null){
                     if (maxExp == Integer.parseInt(s[1][counter])){
