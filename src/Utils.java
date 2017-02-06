@@ -5,7 +5,7 @@ import java.util.Collections;
  * Created by jmuletr on 2/02/17.
  */
 public class Utils {
-    //ToDo reparar fToString
+    //ToDo reparar fToString(llevar codi repetit)
     static String fToString(float[] cfs){
         int exp = cfs.length - 1;
         int fact;
