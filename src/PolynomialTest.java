@@ -63,6 +63,10 @@ public class PolynomialTest {
     public void sumes1() {
         Polynomial p1, p2, p3;
 
+        p1 = new Polynomial("-6x^10 + 36x^8 - 48x^6");
+        p2 = new Polynomial("-91x^5 + 546x^3 - 728x");
+        assertEquals("-6x^10 + 36x^8 - 48x^6 - 91x^5 + 546x^3 - 728x", p1.add(p2).toString());
+
         p1 = new Polynomial("2x^2 + 3x - 5");
         p2 = new Polynomial("7x^2 + 10");
         assertEquals("9x^2 + 3x + 5", p1.add(p2).toString());
