@@ -70,7 +70,7 @@ public class Polynomial {
                 }
                 /*
                 pol2=		     x^4 - 6x^2 + 8 *
-                pol1=				 12
+                pol1=				         12
                 ____________________________________
                          12x^4 - 72x^2 + 96
 
@@ -81,6 +81,7 @@ public class Polynomial {
                 ((pol2.lenght(es 3)- la y del bucle que valdria 0) - 1 )) = 5 -((1-0) + (3-0)-1)=4-(4-1)=5-3=2
                 aixi que pol1[0] que es 12 * pol2[0] que es 8 = 96 aixi que operations posicio 2 val 96
                  */
+                //en cas de multiplicar dos exponents es multiplica el valor dels coeficients i es sumen els valors dels exponents.
                 operations[operations.length - (((pol1.length - x)) + ((pol2.length - y) - 1))] = pol1[x] * pol2[y];
             }
             p = new Polynomial(operations);
