@@ -26,18 +26,21 @@ public class Utils {
                 }
                 continue;
             } else {
-                //nombres positius
-                if (fact >= 0) {
-                    //primer valor sense signe
+
+                    //primer valor
                     if (i == first) {
+                        if (fact < 0) {
+                            coefs = "-";
+                            fact = fact * -1;
+                        }
                         if (exp > 0) {
                             if (fact == 1) {
-                                coefs = "x";
+                                coefs += "x";
                                 if (exp > 1) {
                                     coefs += "^" + exp;
                                 }
                             } else if (fact > 1) {
-                                coefs = Integer.toString(fact);
+                                coefs += Integer.toString(fact);
                                 coefs += "x";
                                 if (exp > 1) {
                                     coefs += "^" + exp;
@@ -52,7 +55,12 @@ public class Utils {
 
                         //valors amb signe
                     } else if (i > 0) {
-                        coefs += " + ";
+                        if (fact >= 0) {
+                            coefs += " + ";
+                        }else {
+                            coefs += " - ";
+                            fact = fact * -1;
+                        }
                         if (exp == 0) {
                             if (fact == 0) {
                                 coefs += "0";
@@ -74,55 +82,8 @@ public class Utils {
 
                             }
                         } else coefs += fact;
-                        //nombres negatius
+
                     }
-                } else if (fact < 0) {
-                    if (i == 0) {
-                        coefs = "-";
-                        fact = fact * -1;
-                        if (exp > 0) {
-                            if (fact == 1) {
-                                coefs += "x";
-                                if (exp > 1) {
-                                    coefs += "^" + exp;
-                                }
-                            } else if (fact > 1) {
-                                coefs += Integer.toString(fact);
-                                coefs += "x";
-                                if (exp > 1) {
-                                    coefs += "^" + exp;
-                                }
-                            }
-                        }
-                        //valors amb signe
-                    } else if (i > 0) {
-                        coefs += " - ";
-                        if (exp == 0) {
-                            if (fact == 0) {
-                                coefs += "0";
-                            } else if (fact < 0) {
-                                fact = fact * -1;
-                                coefs += fact;
-                            }
-                        } else if (exp > 0) {
-                            if (exp > 0) {
-                                fact = fact * -1;
-                                if (fact == 1) {
-                                    coefs += "x";
-                                    if (exp > 1) {
-                                        coefs += "^" + exp;
-                                    }
-                                } else if (fact > 1) {
-                                    coefs += Integer.toString(fact);
-                                    coefs += "x";
-                                    if (exp > 1) {
-                                        coefs += "^" + exp;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
             exp--;
         }
