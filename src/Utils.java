@@ -164,13 +164,19 @@ public class Utils {
     static String[][] order(String[][] s){
         String[][] s2 = new String[2][s[0].length];
         String[] order = new String[s[0].length];
+        int[] IntArray = new int[order.length];
+
         for (int i = 0; i < order.length; i++) {
-            order[i] = s[1][i];
+            IntArray[i] = Integer.parseInt(s[1][i]);
         }
-        Arrays.sort(order, Collections.reverseOrder());
+        Arrays.sort(IntArray);
+        for (int i = order.length - 1, x = 0; i >=0 ; i--, x++) {
+            order[x] = Integer.toString(IntArray[i]);
+        }
+
         for (int i = 0; i < order.length; i++) {
             for (int x = 0; x < order.length; x++) {
-                if (order[i] == s[1][x]){
+                if (order[i].equalsIgnoreCase(s[1][x])){
                     s2[0][i] = s[0][x];
                     s2[1][i] = s[1][x];
                     s[1][x] = null;
