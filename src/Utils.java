@@ -1,5 +1,5 @@
 import java.util.Arrays;
-import java.util.Collections;
+
 
 /**
  * Created by jmuletr on 2/02/17.
@@ -14,7 +14,7 @@ public class Utils {
         String coefs ="";
         for (int i = 0; i < cfs.length; i++) {
             fact = (int) cfs[i];
-            if (cfs[i] != 0 && isFirst == false){
+            if (cfs[i] != 0 && !isFirst){
                 first = i;
                 isFirst = true;
             }
@@ -79,7 +79,6 @@ public class Utils {
                                 if (exp > 1) {
                                     coefs += "^" + exp;
                                 }
-
                             }
                         } else coefs += fact;
 
@@ -196,4 +195,5 @@ public class Utils {
         }
         return coef;
     }
+
 }

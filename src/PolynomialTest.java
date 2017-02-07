@@ -7,7 +7,7 @@ public class PolynomialTest {
     @Test
     public void constructs1() {
         Polynomial p;
-/*
+
         p = new Polynomial(new float[]{1, 5});
         assertEquals("x + 5", p.toString());
 
@@ -25,7 +25,7 @@ public class PolynomialTest {
 
         p = new Polynomial(new float[]{3, 1, 0, 0, -20, -8});
         assertEquals("3x^5 + x^4 - 20x - 8", p.toString());
-*/
+
         p = new Polynomial(new float[]{-6, 0, 0, 20, -8});
         assertEquals("-6x^4 + 20x - 8", p.toString());
     }
