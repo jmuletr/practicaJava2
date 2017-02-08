@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Polynomial {
-    private float[] coef = {0f};
+    protected float[] coef = {0f};
     private String coefStr;
     // Constructor per defecte. Genera un polinomi zero
     public Polynomial() {
@@ -125,43 +125,14 @@ public class Polynomial {
         int numExp = Utils.monTotal(this.coefStr);
         float[] results = new float[this.coef.length - 1];
         Arrays.fill(results, 0);
-        //polinomis simples
         if (numExp == 2 && this.coef[this.coef.length - 1] != 0){
-            if (this.coef.length - 1 == 2){
-                if (this.coef[this.coef.length - 1] < 0){
-                    this.coef[this.coef.length - 1] *= -1;
-                }
-                float x = (float)Math.sqrt(this.coef[this.coef.length - 1]);
-                results[1] = x;
-                results[0] = x * -1;
-                return results;
-            }
-            else {
-                if (this.coef[this.coef.length - 1] < 0){
-                    this.coef[this.coef.length - 1] *= -1;
-                }
-                results[0] = this.coef[this.coef.length -1];
-                return results;
-            }
+            results = Utils.simpleRoot(this, numExp);
+            return results;
         }
         //polinomis 2n grau
         if (this.coef.length == 3){
-            float a = this.coef[0];
-            float b = this.coef[1];
-            float c = this.coef[2];
-            float disc = b * b - 4 * a * c;
-            if (disc > 0){
-                results[0] = ((-1 * b) + (float)Math.sqrt(disc)) / (2 * a);
-                results[1] = ((-1 * b) - (float)Math.sqrt(disc)) / (2 * a);
-                Arrays.sort(results);
-                return results;
-            }else if (disc == 0){
-                results = new float[1];
-                results[0] = ((-1 * b) + (float)Math.sqrt(disc)) / (2 * a);
-                return results;
-            }else if (disc < 0){
-                return null;
-            }
+            results = Utils.secondRoot(this, numExp);
+            return results;
         }
         return null;
     }

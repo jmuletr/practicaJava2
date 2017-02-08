@@ -154,23 +154,23 @@ public class PolynomialTest {
     public void roots() {
         Polynomial p;
 
-//ok        p = new Polynomial("x^2 - 4");
-//ok        assertEqualsFloats(new float[]{-2, 2}, p.roots());
+/*        p = new Polynomial("x^2 - 4");
+        assertEqualsFloats(new float[]{-2, 2}, p.roots());
 
-//ok        p = new Polynomial("2x^2 + 4x - 30");
-//ok        assertEqualsFloats(new float[]{-5, 3}, p.roots());
+        p = new Polynomial("2x^2 + 4x - 30");
+        assertEqualsFloats(new float[]{-5, 3}, p.roots());
 
-//ok        p = new Polynomial("x - 9");
-//ok        assertEqualsFloats(new float[]{9}, p.roots());
+        p = new Polynomial("x - 9");
+        assertEqualsFloats(new float[]{9}, p.roots());
 
         // Sense solució
-//ok        p = new Polynomial("23x^2 + 90x + 100");
-//ok        assertNull(p.roots());
+        p = new Polynomial("23x^2 + 90x + 100");
+        assertNull(p.roots());
 
         // Només una solució
-//ok        p = new Polynomial("x^2 + 81 + 18x");
-//ok        assertEqualsFloats(new float[]{-9}, p.roots());
-
+        p = new Polynomial("x^2 + 81 + 18x");
+        assertEqualsFloats(new float[]{-9}, p.roots());
+*/
         // Biquadràtica
         p = new Polynomial("x^4 - 13x^2 + 36");
         assertEqualsFloats(new float[]{-3, -2, 2, 3}, p.roots());

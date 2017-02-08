@@ -203,4 +203,46 @@ public class Utils {
         return monomial.length;
     }
 
+    static float[] simpleRoot(Polynomial p , int numExp){
+        float[] results = new float[p.coef.length - 1];
+        //polinomis simples
+
+            if (p.coef.length - 1 == 2){
+                if (p.coef[p.coef.length - 1] < 0){
+                    p.coef[p.coef.length - 1] *= -1;
+                }
+                float x = (float)Math.sqrt(p.coef[p.coef.length - 1]);
+                results[1] = x;
+                results[0] = x * -1;
+                return results;
+            }
+            else {
+                if (p.coef[p.coef.length - 1] < 0){
+                    p.coef[p.coef.length - 1] *= -1;
+                }
+                results[0] = p.coef[p.coef.length -1];
+                return results;
+            }
+    }
+
+    static float[] secondRoot(Polynomial p, int numExp) {
+        float[] results = new float[p.coef.length - 1];
+        float a = p.coef[0];
+        float b = p.coef[1];
+        float c = p.coef[2];
+        float disc = b * b - 4 * a * c;
+        if (disc > 0){
+            results[0] = ((-1 * b) + (float)Math.sqrt(disc)) / (2 * a);
+            results[1] = ((-1 * b) - (float)Math.sqrt(disc)) / (2 * a);
+            Arrays.sort(results);
+            return results;
+        }else if (disc == 0){
+            results = new float[(p.coef.length - 1)/2];
+            results[0] = ((-1 * b) + (float)Math.sqrt(disc)) / (2 * a);
+            return results;
+        }else if (disc < 0){
+            return null;
+        }
+        return null;
+    }
 }
