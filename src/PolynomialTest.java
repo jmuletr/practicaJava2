@@ -170,7 +170,7 @@ public class PolynomialTest {
         // Només una solució
         p = new Polynomial("x^2 + 81 + 18x");
         assertEqualsFloats(new float[]{-9}, p.roots());
-*/
+
         // Biquadràtica
         p = new Polynomial("x^4 - 13x^2 + 36");
         assertEqualsFloats(new float[]{-3, -2, 2, 3}, p.roots());
@@ -179,7 +179,7 @@ public class PolynomialTest {
         p = new Polynomial("x^4 - 10x^2 + 25");
         assertEqualsFloats(new float[]{(float) -2.236, (float) 2.236}, p.roots());
 
-        p = new Polynomial("x^4 - 100");
+*/        p = new Polynomial("x^4 - 100");
         assertEqualsFloats(new float[]{-3.1622f, 3.1622f}, p.roots());
 
 /*        p = new Polynomial("x^3 + 100");

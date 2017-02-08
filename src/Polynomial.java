@@ -136,12 +136,24 @@ public class Polynomial {
             return results;
         }
         //bicuadrades
-        if (this.coef.length == 5 && this.coef[4] == 0){
-            float[] secondGrade = {this.coef[5],0,this.coef[3]};
+        if (this.coef.length == 5 && this.coef[1] == 0){
+            float[] secondGrade = {this.coef[0],this.coef[2],this.coef[4]};
             Polynomial p = new Polynomial(secondGrade);
             float[] results2 = new float[(this.coef.length - 1)/2];
             results2 = Utils.secondRoot(p, numExp);
-            results = Utils.secondRoot(p, numExp);
+            if (results2.length == 2){
+                for (int i = 0, x = 3; i < 2; i++, x--) {
+                    results[i] = (float)Math.sqrt(results2[i]);
+                    results[x] = (float)Math.sqrt(results2[i]) * -1;
+                }
+            }
+            if (results2.length == 1){
+                    results = new float[2];
+                    results[0] = (float)Math.sqrt(results2[0]);
+                    results[1] = (float)Math.sqrt(results2[0]) * -1;
+            }
+            Arrays.sort(results);
+            return results;
         }
         return null;
     }
