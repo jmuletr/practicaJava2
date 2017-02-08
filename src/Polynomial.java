@@ -153,7 +153,9 @@ public class Polynomial {
             if (disc > 0){
 
             }else if (disc == 0){
-
+                results = new float[1];
+                results[0] = ((-1 * b) + disc) / (2 * a);
+                return results;
             }else if (disc < 0){
                 return null;
             }
