@@ -196,4 +196,11 @@ public class Utils {
         return coef;
     }
 
+    static int monTotal(String s){
+        s = s.replace("- ", "-");
+        s = s.replace("+ ", "+");
+        String[] monomial = s.split(" ");
+        return monomial.length;
+    }
+
 }

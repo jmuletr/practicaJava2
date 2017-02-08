@@ -72,7 +72,7 @@ public class Polynomial {
                 pol2=		     x^4 - 6x^2 + 8 *
                 pol1=				         12
                 ____________________________________
-                         12x^4 - 72x^2 + 96
+                             12x^4 - 72x^2 + 96
 
 
                 operation.lenght = longitud del array de pol1 mes la de pol2 incluits valors 0 menys 1.
@@ -122,6 +122,32 @@ public class Polynomial {
 
     // Troba les arrels del polinomi, ordenades de menor a major
     public float[] roots() {
+        int numExp = Utils.monTotal(this.coefStr);
+        float[] results = new float[this.coef.length - 1];
+        Arrays.fill(results, 0);
+        //polinomis simples
+        if (numExp == 2 && this.coef[this.coef.length - 1] != 0){
+            if (this.coef.length - 1 == 2){
+                if (this.coef[this.coef.length - 1] < 0){
+                    this.coef[this.coef.length - 1] *= -1;
+                }
+                float x = (float)Math.sqrt(this.coef[this.coef.length - 1]);
+                results[1] = x;
+                results[0] = x * -1;
+                return results;
+            }
+            else {
+                if (this.coef[this.coef.length - 1] < 0){
+                    this.coef[this.coef.length - 1] *= -1;
+                }
+                results[0] = this.coef[this.coef.length -1];
+                return results;
+            }
+        }
+        //polinomis 2n grau
+        if (this.coef.length == 3){
+
+        }
         return null;
     }
 
