@@ -151,10 +151,13 @@ public class Polynomial {
             float c = this.coef[2];
             float disc = b * b - 4 * a * c;
             if (disc > 0){
-
+                results[0] = ((-1 * b) + (float)Math.sqrt(disc)) / (2 * a);
+                results[1] = ((-1 * b) - (float)Math.sqrt(disc)) / (2 * a);
+                Arrays.sort(results);
+                return results;
             }else if (disc == 0){
                 results = new float[1];
-                results[0] = ((-1 * b) + disc) / (2 * a);
+                results[0] = ((-1 * b) + (float)Math.sqrt(disc)) / (2 * a);
                 return results;
             }else if (disc < 0){
                 return null;
