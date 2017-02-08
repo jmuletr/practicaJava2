@@ -96,25 +96,28 @@ public class Polynomial {
     // Torna el quocient i també el residu (ambdós polinomis)
     public Polynomial[] div(Polynomial p2) {
         Polynomial[] result = new Polynomial[2];
-        float[][] operations = new float[2][coef.length];
-        float[] res = new float[coef.length];
-        int current = 0;
-        result[1]= new Polynomial(this.coef);
-
-        operations[1][0] = this.coef[0];
-        operations[0][0] = this.coef[0];
+        int position = 0;
+        int count = 0;
+        float[][] operations = new float[2][this.coef.length];
+        result[1] = new Polynomial(this.coef);
         if (this.coef.length < p2.coef.length){
             return null;
-        }else{
-            while(current < p2.coef.length - 1){
-                res[current + (this.coef.length - p2.coef.length -1)]= (float) Math.sqrt(operations[1][current]);
-                for (int i = 0; i < p2.coef.length; i++) {
-                    operations[1][i] = (res[current + (this.coef.length - p2.coef.length -1)] * result[1].coef[current]) * -1;
-                }
-                result[1] = new Polynomial(operations[0]).add(new Polynomial(operations[1]));
-            }
         }
-       return null;
+        while(count < this.coef.length - p2.coef.length + 1){
+            if (result[1].coef[position] == 0){
+                position++;
+            }
+            operations[0][position + p2.coef.length - 1] = result[1].coef[position] / p2.coef[0];
+            for (int i = 0; i < p2.coef.length; i++) {
+                operations[1][count + i] = operations[0][position + (this.coef.length -
+                        (this.coef.length - (p2.coef.length -1)))] * p2.coef[i] * -1;
+            }
+            result[1] = result[1].add(new Polynomial(operations[1]));
+            operations[1][count] = 0;
+            count++;
+        }
+        result[0] = new Polynomial(operations[0]);
+        return result;
     }
 
     // Troba les arrels del polinomi, ordenades de menor a major
