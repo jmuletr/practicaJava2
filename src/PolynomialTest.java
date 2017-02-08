@@ -164,12 +164,12 @@ public class PolynomialTest {
 //ok        assertEqualsFloats(new float[]{9}, p.roots());
 
         // Sense solució
-        p = new Polynomial("23x^2 + 90x + 100");
-        assertNull(p.roots());
+//ok        p = new Polynomial("23x^2 + 90x + 100");
+//ok        assertNull(p.roots());
 
         // Només una solució
-//ok        p = new Polynomial("x^2 + 81 + 18x");
-//ok        assertEqualsFloats(new float[]{-9}, p.roots());
+        p = new Polynomial("x^2 + 81 + 18x");
+        assertEqualsFloats(new float[]{-9}, p.roots());
 
         // Biquadràtica
         p = new Polynomial("x^4 - 13x^2 + 36");
