@@ -5,7 +5,7 @@ import java.util.Arrays;
  * Created by jmuletr on 2/02/17.
  */
 public class Utils {
-    //ToDo reparar fToString(llevar codi repetit)
+
     static String fToString(float[] cfs){
         int exp = cfs.length - 1;
         int fact;
@@ -244,5 +244,26 @@ public class Utils {
             return null;
         }
         return null;
+    }
+
+    static float[] bicuadRoot(Polynomial pol, int numExp) {
+        float[] results = new float[pol.coef.length - 1];
+        float[] secondGrade = {pol.coef[0],pol.coef[2],pol.coef[4]};
+        Polynomial p = new Polynomial(secondGrade);
+        float[] results2 = new float[(pol.coef.length - 1)/2];
+        results2 = Utils.secondRoot(p, numExp);
+        if (results2.length == 2){
+            for (int i = 0, x = 3; i < 2; i++, x--) {
+                results[i] = (float)Math.sqrt(results2[i]);
+                results[x] = (float)Math.sqrt(results2[i]) * -1;
+            }
+        }
+        if (results2.length == 1){
+            results = new float[2];
+            results[0] = (float)Math.sqrt(results2[0]);
+            results[1] = (float)Math.sqrt(results2[0]) * -1;
+        }
+        Arrays.sort(results);
+        return results;
     }
 }
