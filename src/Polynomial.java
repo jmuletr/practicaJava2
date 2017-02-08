@@ -146,7 +146,17 @@ public class Polynomial {
         }
         //polinomis 2n grau
         if (this.coef.length == 3){
+            float a = this.coef[0];
+            float b = this.coef[1];
+            float c = this.coef[2];
+            float disc = b * b - 4 * a * c;
+            if (disc > 0){
 
+            }else if (disc == 0){
+
+            }else if (disc < 0){
+                return null;
+            }
         }
         return null;
     }
