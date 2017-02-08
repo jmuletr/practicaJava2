@@ -127,17 +127,17 @@ public class Polynomial {
         Arrays.fill(results, 0);
         // polinomis simples
         if (numExp == 2 && this.coef[this.coef.length - 1] != 0){
-            results = Utils.simpleRoot(this, numExp);
+            results = Utils.simpleRoot(this);
             return results;
         }
         //polinomis 2n grau
         if (this.coef.length == 3){
-            results = Utils.secondRoot(this, numExp);
+            results = Utils.secondRoot(this);
             return results;
         }
         //bicuadrades
         if (this.coef.length == 5 && this.coef[1] == 0){
-            results = Utils.bicuadRoot(this, numExp);
+            results = Utils.bicuadRoot(this);
             return results;
         }
         return null;

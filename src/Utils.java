@@ -4,7 +4,7 @@ import java.util.Arrays;
 /**
  * Created by jmuletr on 2/02/17.
  */
-public class Utils {
+class Utils {
 
     static String fToString(float[] cfs){
         int exp = cfs.length - 1;
@@ -21,7 +21,7 @@ public class Utils {
             if (fact == 0 && exp >= 0) {
                 exp--;
 
-                if (i == cfs.length - 1 && coefs == "") {
+                if (i == cfs.length - 1 && coefs.equals("")) {
                     coefs = "0";
                 }
                 continue;
@@ -121,7 +121,7 @@ public class Utils {
         return coefExp;
     }
 
-    static String[][] order(String[][] s){
+    private static String[][] order(String[][] s){
         String[][] s2 = new String[2][s[0].length];
         String[] order = new String[s[0].length];
         int[] IntArray = new int[order.length];
@@ -166,7 +166,7 @@ public class Utils {
         boolean y = false;
         //notNull
         int nN = 0;
-        for (int i = 0; y != true; i++) {
+        for (int i = 0; !y; i++) {
             if (s[0][i] != null){
                 nN = i;
                 y = true;
@@ -203,7 +203,7 @@ public class Utils {
         return monomial.length;
     }
 
-    static float[] simpleRoot(Polynomial p , int numExp){
+    static float[] simpleRoot(Polynomial p){
         float[] results = new float[p.coef.length - 1];
         //polinomis simples
 
@@ -225,7 +225,7 @@ public class Utils {
             }
     }
 
-    static float[] secondRoot(Polynomial p, int numExp) {
+    static float[] secondRoot(Polynomial p) {
         float[] results = new float[p.coef.length - 1];
         float a = p.coef[0];
         float b = p.coef[1];
@@ -246,12 +246,12 @@ public class Utils {
         return null;
     }
 
-    static float[] bicuadRoot(Polynomial pol, int numExp) {
+    static float[] bicuadRoot(Polynomial pol) {
         float[] results = new float[pol.coef.length - 1];
         float[] secondGrade = {pol.coef[0],pol.coef[2],pol.coef[4]};
         Polynomial p = new Polynomial(secondGrade);
         float[] results2 = new float[(pol.coef.length - 1)/2];
-        results2 = Utils.secondRoot(p, numExp);
+        results2 = Utils.secondRoot(p);
         if (results2.length == 2){
             for (int i = 0, x = 3; i < 2; i++, x--) {
                 results[i] = (float)Math.sqrt(results2[i]);
