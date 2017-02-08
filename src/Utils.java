@@ -27,62 +27,62 @@ class Utils {
                 continue;
             } else {
 
-                    //primer valor
-                    if (i == first) {
-                        if (fact < 0) {
-                            coefs = "-";
-                            fact = fact * -1;
-                        }
-                        if (exp > 0) {
-                            if (fact == 1) {
-                                coefs += "x";
-                                if (exp > 1) {
-                                    coefs += "^" + exp;
-                                }
-                            } else if (fact > 1) {
-                                coefs += Integer.toString(fact);
-                                coefs += "x";
-                                if (exp > 1) {
-                                    coefs += "^" + exp;
-                                }
-                            }
-                            //exponent 0
-                        } else if (fact == 0) {
-                            coefs = "0";
-                        } else if (fact > 0) {
-                            coefs += " + " + fact;
-                        }
-
-                        //valors amb signe
-                    } else if (i > 0) {
-                        if (fact >= 0) {
-                            coefs += " + ";
-                        }else {
-                            coefs += " - ";
-                            fact = fact * -1;
-                        }
-                        if (exp == 0) {
-                            if (fact == 0) {
-                                coefs += "0";
-                            } else if (fact > 0) {
-                                coefs += fact;
-                            }
-                        } else if (exp > 0) {
-                            if (fact == 1) {
-                                coefs += "x";
-                                if (exp > 1) {
-                                    coefs += "^" + exp;
-                                }
-                            } else if (fact > 1) {
-                                coefs += Integer.toString(fact);
-                                coefs += "x";
-                                if (exp > 1) {
-                                    coefs += "^" + exp;
-                                }
-                            }
-                        } else coefs += fact;
-
+                //primer valor
+                if (i == first) {
+                    if (fact < 0) {
+                        coefs = "-";
+                        fact = fact * -1;
                     }
+                    if (exp > 0) {
+                        if (fact == 1) {
+                            coefs += "x";
+                            if (exp > 1) {
+                                coefs += "^" + exp;
+                            }
+                        } else if (fact > 1) {
+                            coefs += Integer.toString(fact);
+                            coefs += "x";
+                            if (exp > 1) {
+                                coefs += "^" + exp;
+                            }
+                        }
+                        //exponent 0
+                    } else if (fact == 0) {
+                        coefs = "0";
+                    } else if (fact > 0) {
+                        coefs += " + " + fact;
+                    }
+
+                    //valors amb signe
+                } else if (i > 0) {
+                    if (fact >= 0) {
+                        coefs += " + ";
+                    }else {
+                        coefs += " - ";
+                        fact = fact * -1;
+                    }
+                    if (exp == 0) {
+                        if (fact == 0) {
+                            coefs += "0";
+                        } else if (fact > 0) {
+                            coefs += fact;
+                        }
+                    } else if (exp > 0) {
+                        if (fact == 1) {
+                            coefs += "x";
+                            if (exp > 1) {
+                                coefs += "^" + exp;
+                            }
+                        } else if (fact > 1) {
+                            coefs += Integer.toString(fact);
+                            coefs += "x";
+                            if (exp > 1) {
+                                coefs += "^" + exp;
+                            }
+                        }
+                    } else coefs += fact;
+
+                }
             }
             exp--;
         }
@@ -207,22 +207,23 @@ class Utils {
         float[] results = new float[p.coef.length - 1];
         //polinomis simples
 
-            if (p.coef.length - 1 == 2){
-                if (p.coef[p.coef.length - 1] < 0){
-                    p.coef[p.coef.length - 1] *= -1;
-                }
-                float x = (float)Math.sqrt(p.coef[p.coef.length - 1]);
-                results[1] = x;
-                results[0] = x * -1;
-                return results;
+        if (p.coef.length - 1 == 2){
+            if (p.coef[p.coef.length - 1] < 0){
+                p.coef[p.coef.length - 1] *= -1;
             }
-            else {
-                if (p.coef[p.coef.length - 1] < 0){
-                    p.coef[p.coef.length - 1] *= -1;
-                }
-                results[0] = p.coef[p.coef.length -1];
-                return results;
+            float x = (float)Math.sqrt(p.coef[p.coef.length - 1]);
+            results[1] = x;
+            results[0] = x * -1;
+            return results;
+        }
+        else if (p.coef.length - 1 == 1){
+            if (p.coef[p.coef.length - 1] < 0){
+                p.coef[p.coef.length - 1] *= -1;
             }
+            results[0] = p.coef[p.coef.length -1];
+            return results;
+        }
+        return null;
     }
 
     static float[] secondRoot(Polynomial p) {
