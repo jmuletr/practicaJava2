@@ -125,6 +125,7 @@ public class Polynomial {
         int numExp = Utils.monTotal(this.coefStr);
         float[] results = new float[this.coef.length - 1];
         Arrays.fill(results, 0);
+        // polinomis simples
         if (numExp == 2 && this.coef[this.coef.length - 1] != 0){
             results = Utils.simpleRoot(this, numExp);
             return results;
@@ -133,6 +134,14 @@ public class Polynomial {
         if (this.coef.length == 3){
             results = Utils.secondRoot(this, numExp);
             return results;
+        }
+        //bicuadrades
+        if (this.coef.length == 5 && this.coef[4] == 0){
+            float[] secondGrade = {this.coef[5],0,this.coef[3]};
+            Polynomial p = new Polynomial(secondGrade);
+            float[] results2 = new float[(this.coef.length - 1)/2];
+            results2 = Utils.secondRoot(p, numExp);
+            results = Utils.secondRoot(p, numExp);
         }
         return null;
     }
