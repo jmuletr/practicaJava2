@@ -204,24 +204,34 @@ class Utils {
     }
 
     static float[] simpleRoot(Polynomial p){
-        float[] results = new float[p.coef.length - 1];
+        float[] results = new float[2];
         //polinomis simples
-
-        if (p.coef.length - 1 == 2){
-            if (p.coef[p.coef.length - 1] < 0){
-                p.coef[p.coef.length - 1] *= -1;
-            }
-            float x = (float)Math.sqrt(p.coef[p.coef.length - 1]);
-            results[1] = x;
-            results[0] = x * -1;
-            return results;
-        }
-        else if (p.coef.length - 1 == 1){
+        if (p.coef.length - 1 == 1){
+            results = new float[1];
             if (p.coef[p.coef.length - 1] < 0){
                 p.coef[p.coef.length - 1] *= -1;
             }
             results[0] = p.coef[p.coef.length -1];
             return results;
+        }else if (p.coef.length - 1 > 1){
+            if ((p.coef.length - 1) % 2 == 0){
+                if (p.coef[p.coef.length - 1] < 1){
+                    p.coef[p.coef.length - 1] *= -1;
+                }else{return null;}
+                float x = (float)Math.pow(p.coef[p.coef.length - 1], 1.0/(p.coef.length - 1));
+                results[1] = x;
+                results[0] = x * -1;
+                return results;
+            }if ((p.coef.length - 1) % 2 != 0){
+                if (p.coef[p.coef.length -1] < 0){
+                    return null;
+                }else{
+                    results = new float[1];
+                    results[0] = (float)Math.pow(p.coef[p.coef.length - 1], 1.0/(p.coef.length - 1));
+                    results[0] *= -1;
+                    return results;
+                }
+            }
         }
         return null;
     }
