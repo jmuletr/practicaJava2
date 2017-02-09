@@ -279,7 +279,34 @@ class Utils {
     }
 
     static float[] ruffini(Polynomial p) {
+        float[] resultRuff = new float[p.coef.length - 1];
+        float[] resultSec;
+        Polynomial operations = new Polynomial(p.coef);
+        int position = 0;
+        int div[] = new int[2];
 
+        while (true) {
+            for (int count = 1; count < operations.coef[operations.coef.length - 1]; count++) {
+                if (operations.coef.length - 1 == 2) {
+                    return null;
+                }
+                div = Utils.div((int) operations.coef[operations.coef.length - 1], count);
+
+
+            }
+        }
+    }
+
+    static int[] div(int d, int c) {
+        int count = c;
+        int[] divs = new int[2];
+        while (count < d) {
+            if (d % count == 0) {
+                divs[0] = count;
+                divs[1] = count * -1;
+                return divs;
+            } else count++;
+        }
         return null;
     }
 }
