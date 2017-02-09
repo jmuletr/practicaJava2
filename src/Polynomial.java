@@ -139,8 +139,10 @@ public class Polynomial {
         if (this.coef.length == 5 && this.coef[1] == 0){
             results = Utils.bicuadRoot(this);
             return results;
+        }else{
+            results = Utils.ruffini(this);
+            return results;
         }
-        return null;
     }
 
     // Torna "true" si els polinomis són iguals. Això és un override d'un mètode de la classe Object

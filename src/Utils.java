@@ -277,4 +277,9 @@ class Utils {
         Arrays.sort(results);
         return results;
     }
+
+    static float[] ruffini(Polynomial p) {
+
+        return null;
+    }
 }
