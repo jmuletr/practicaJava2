@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -279,22 +281,50 @@ class Utils {
     }
 
     static float[] ruffini(Polynomial p) {
-        float[] resultRuff = new float[p.coef.length - 1];
-        float[] resultSec;
-        Polynomial operations = new Polynomial(p.coef);
-        int position = 0;
-        int div[] = new int[2];
+        int count = 1;
+        List<Float> pResults;
+        pResults = new ArrayList<Float>();
+        float[] coeficientes = p.coef;
+        int[] valorX;
+        while (count < p.coef[p.coef.length-1]){
 
-        while (true) {
-            for (int count = 1; count < operations.coef[operations.coef.length - 1]; count++) {
-                if (operations.coef.length - 1 == 2) {
-                    return null;
+            //Valor de x
+            if (p.coef[p.coef.length-1] > 0){
+                valorX = div((int)p.coef[p.coef.length-1], count);
+            }else{valorX = div((int)(p.coef[p.coef.length-1]) * -1, count);}
+
+            //Coeficientes del polinomio
+            float resultado = 0;
+
+
+            //Recorrer los coeficientes
+            for (int j = 0; j < coeficientes.length; j++) {
+                //Multiplicar al valor parcial el valor de x más el coeficiente
+                resultado= resultado * valorX[0] + coeficientes[j];
+            }
+            if (resultado == 0){
+                pResults.add((float)valorX[0]);
+            }else {
+                //Recorrer los coeficientes
+                for (int j = 0; j < coeficientes.length; j++) {
+                    //Multiplicar al valor parcial el valor de x más el coeficiente
+                    resultado= resultado * valorX[1] + coeficientes[j];
                 }
-                div = Utils.div((int) operations.coef[operations.coef.length - 1], count);
-
-
+                if (resultado == 0) {
+                    pResults.add((float) valorX[0]);
+                }
+            }
+            count= valorX[0] + 1;
+            if (pResults.size() == 2){ //p.coef.length - 1){
+                float[] results = new float[pResults.size()];
+                for(int i = 0; i < pResults.size(); ++i) {
+                    results[i] = pResults.get(i);
+                }
+                Arrays.sort(results);
+                return results;
             }
         }
+        return null;
     }
 
     static int[] div(int d, int c) {
