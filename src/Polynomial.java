@@ -3,6 +3,7 @@ import java.util.Arrays;
 public class Polynomial {
     protected float[] coef = {0f};
     private String coefStr;
+
     // Constructor per defecte. Genera un polinomi zero
     public Polynomial() {
         this.coefStr = "0";
@@ -23,27 +24,26 @@ public class Polynomial {
 
     // Suma el polinomi amb un altre. No modifica el polinomi actual (this). Genera un de nou
     public Polynomial add(Polynomial p) {
-        if (this.coefStr == "0"){
+        if (this.coefStr == "0") {
             Polynomial polyAdd = new Polynomial(p.coefStr);
             return polyAdd;
         }
         String p1 = this.coefStr;
         String p2 = p.coefStr;
-        if (this.coef.length < p.coef.length){
+        if (this.coef.length < p.coef.length) {
             p1 = p.coefStr;
             p2 = this.coefStr;
         }
-        if (!(p2.matches("\\s[-]\\s\\d*[x].*"))){
-            if(p2.charAt(0) == '-'){
+        if (!(p2.matches("\\s[-]\\s\\d*[x].*"))) {
+            if (p2.charAt(0) == '-') {
                 String s2 = " - " + p2.substring(1);
                 p2 = s2;
-            }
-            else{
+            } else {
                 String s2 = " + " + p2;
                 p2 = s2;
             }
         }
-        String s2 = p1 +""+ p2;
+        String s2 = p1 + "" + p2;
         Polynomial polyAdd = new Polynomial(s2);
         return polyAdd;
     }
@@ -52,20 +52,20 @@ public class Polynomial {
     public Polynomial mult(Polynomial p2) {
         float[] pol1 = this.coef;
         float[] pol2 = p2.coef;
-        int maxExp = pol1.length + pol2.length -1;
+        int maxExp = pol1.length + pol2.length - 1;
         float[] operations = new float[maxExp];
         Polynomial answer = new Polynomial();
-        if (this.coef.length < p2.coef.length){
+        if (this.coef.length < p2.coef.length) {
             pol1 = p2.coef;
             pol2 = this.coef;
         }
         Polynomial p;
-        for(int x = 0; x < pol1.length; x++) {
-            if(pol1[x] == 0){
+        for (int x = 0; x < pol1.length; x++) {
+            if (pol1[x] == 0) {
                 continue;
             }
             for (int y = 0; y < pol2.length; y++) {
-                if(pol2[y] == 0){
+                if (pol2[y] == 0) {
                     continue;
                 }
                 /*
@@ -100,17 +100,17 @@ public class Polynomial {
         int count = 0;
         float[][] operations = new float[2][this.coef.length];
         result[1] = new Polynomial(this.coef);
-        if (this.coef.length < p2.coef.length){
+        if (this.coef.length < p2.coef.length) {
             return null;
         }
-        while(count < this.coef.length - p2.coef.length + 1){
-            if (result[1].coef[position] == 0){
+        while (count < this.coef.length - p2.coef.length + 1) {
+            if (result[1].coef[position] == 0) {
                 position++;
             }
             operations[0][position + p2.coef.length - 1] = result[1].coef[position] / p2.coef[0];
             for (int i = 0; i < p2.coef.length; i++) {
                 operations[1][count + i] = operations[0][position + (this.coef.length -
-                        (this.coef.length - (p2.coef.length -1)))] * p2.coef[i] * -1;
+                        (this.coef.length - (p2.coef.length - 1)))] * p2.coef[i] * -1;
             }
             result[1] = result[1].add(new Polynomial(operations[1]));
             operations[1][count] = 0;
@@ -126,20 +126,20 @@ public class Polynomial {
         float[] results = new float[this.coef.length - 1];
         Arrays.fill(results, 0);
         // polinomis simples
-        if (numExp == 2 && this.coef[this.coef.length - 1] != 0){
+        if (numExp == 2 && this.coef[this.coef.length - 1] != 0) {
             results = Utils.simpleRoot(this);
             return results;
         }
         //polinomis 2n grau
-        if (this.coef.length == 3){
+        if (this.coef.length == 3) {
             results = Utils.secondRoot(this);
             return results;
         }
         //bicuadrades
-        if (this.coef.length == 5 && this.coef[1] == 0){
+        if (this.coef.length == 5 && this.coef[1] == 0) {
             results = Utils.bicuadRoot(this);
             return results;
-        }else{
+        } else {
             results = Utils.ruffini(this);
             return results;
         }
@@ -148,9 +148,9 @@ public class Polynomial {
     // Torna "true" si els polinomis són iguals. Això és un override d'un mètode de la classe Object
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Polynomial){
-            Polynomial p2 = (Polynomial)o;
-            if (p2.toString().equals(o.toString())){
+        if (o instanceof Polynomial) {
+            Polynomial p2 = (Polynomial) o;
+            if (p2.toString().equals(o.toString())) {
                 return true;
             }
         }
