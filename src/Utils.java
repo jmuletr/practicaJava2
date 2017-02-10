@@ -282,40 +282,59 @@ class Utils {
 
     static float[] ruffini(Polynomial p) {
         int count = 1;
+        Polynomial temp = new Polynomial(p.coef);
         List<Float> pResults;
         pResults = new ArrayList<Float>();
-        float[] coeficientes = p.coef;
-        int[] valorX;
+        float[] coeficients = temp.coef;
+        int[] valX;
+        float[] tempCoef = new float[coeficients.length - 1];
         while (count < p.coef[p.coef.length-1]){
 
             //Valor de x
             if (p.coef[p.coef.length-1] > 0){
-                valorX = div((int)p.coef[p.coef.length-1], count);
-            }else{valorX = div((int)(p.coef[p.coef.length-1]) * -1, count);}
+                valX = div((int)p.coef[p.coef.length-1], count);
+            }else{valX = div((int)(p.coef[p.coef.length-1]) * -1, count);}
 
-            //Coeficientes del polinomio
-            float resultado = 0;
+            //Coeficient del polinomi
+            float resultPol = 0;
 
 
-            //Recorrer los coeficientes
-            for (int j = 0; j < coeficientes.length; j++) {
-                //Multiplicar al valor parcial el valor de x más el coeficiente
-                resultado= resultado * valorX[0] + coeficientes[j];
+            //Recorrer els coeficients
+            for (int j = 0; j < coeficients.length; j++) {
+                //Multiplicar el valor parcial el valor de x mes el coeficient
+                resultPol= resultPol * valX[0] + coeficients[j];
+                if (j < tempCoef.length){
+                    tempCoef[j] = resultPol;
+                }
             }
-            if (resultado == 0){
-                pResults.add((float)valorX[0]);
+            if (resultPol == 0){
+                pResults.add((float)valX[0]);
+                temp = new Polynomial(tempCoef);
+                coeficients = temp.coef;
+                tempCoef = new float[tempCoef.length - 1];
             }else {
-                //Recorrer los coeficientes
-                for (int j = 0; j < coeficientes.length; j++) {
-                    //Multiplicar al valor parcial el valor de x más el coeficiente
-                    resultado= resultado * valorX[1] + coeficientes[j];
+                //Recorrer els coeficients amb x negatiu
+                for (int j = 0; j < coeficients.length; j++) {
+                    resultPol= resultPol * valX[1] + coeficients[j];
+                    if (j < tempCoef.length){
+                        tempCoef[j] = resultPol;
+                    }
                 }
-                if (resultado == 0) {
-                    pResults.add((float) valorX[0]);
+                if (resultPol == 0) {
+                    pResults.add((float) valX[0]);
+                    temp = new Polynomial(tempCoef);
+                    coeficients = temp.coef;
+                    tempCoef = new float[tempCoef.length - 1];
                 }
             }
-            count= valorX[0] + 1;
-            if (pResults.size() == 2){ //p.coef.length - 1){
+            count= valX[0] + 1;
+            if (temp.coef.length == 3){
+                float[]secondG = secondRoot(temp);
+                for (int i = 0; i < secondG.length; i++) {
+                    pResults.add(secondG[i]);
+                }
+            }
+            if (pResults.size() == p.coef.length - 1){
                 float[] results = new float[pResults.size()];
                 for(int i = 0; i < pResults.size(); ++i) {
                     results[i] = pResults.get(i);
