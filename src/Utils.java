@@ -14,12 +14,18 @@ class Utils {
         int first = 0;
         boolean isFirst = false;
         String coefs = "";
+        //Comprovam totes les posicions del array
         for (int i = 0; i < cfs.length; i++) {
+            //assignam el valor de la posicio i del array a la variable fact
             fact = (int) cfs[i];
-            if (cfs[i] != 0 && !isFirst) {
+            //sercam quin monomi es el major exponent
+            if (fact != 0 && !isFirst) {
                 first = i;
                 isFirst = true;
             }
+
+            //si el monomi val 0 i el exponent es major que 0 reduim el contador exp, si el exponent es 0 i no hi ha
+            //res dins el string coefs es dona valor 0 al string
             if (fact == 0 && exp >= 0) {
                 exp--;
 
@@ -27,7 +33,9 @@ class Utils {
                     coefs = "0";
                 }
                 continue;
-            } else {
+            }
+            //si el monomi no es 0 s'entra al else
+            else {
 
                 //primer valor
                 if (i == first) {
@@ -92,30 +100,45 @@ class Utils {
     }
 
     static String[][] identifyFact(String s) {
+        //juntam els signes al valor que els segueix
         s = s.replace("- ", "-");
         s = s.replace("+ ", "+");
+        //separam el string en un array pels espais que queden davant cada signe
         String[] monomial = s.split(" ");
         String[][] coefExp = new String[2][monomial.length];
         int coef, exp;
+        //recorrem totes les posicions del array monomial
         for (int i = 0; i < monomial.length; i++) {
+            //monomis amb exponent 1 o major
             if (monomial[i].contains("x")) {
+                //monomis amb valor major a 1
                 if (monomial[i].matches(".*\\d[x].*")) {
                     coef = Integer.parseInt(monomial[i].substring(0, monomial[i].indexOf('x')));
                     coefExp[0][i] = Integer.toString(coef);
+                    //monomis amb exponent major a 1
                     if (monomial[i].matches(".*\\d[x]\\^\\d*")) {
                         exp = Integer.parseInt(monomial[i].substring(monomial[i].indexOf('^') + 1));
                         coefExp[1][i] = Integer.toString(exp);
-                    } else coefExp[1][i] = "1";
-                } else {
+                    }
+                    //exponent 1
+                    else coefExp[1][i] = "1";
+                }
+                //monomis amb valor 1
+                else {
+                    //monomi amb valor -1
                     if (monomial[i].matches("[-][x]\\^\\d*")) {
                         coefExp[0][i] = "-1";
                     } else coefExp[0][i] = "1";
+                    //identificacio del valor del exponent major que 1
                     if (monomial[i].matches(".*[x]\\^\\d*")) {
                         exp = Integer.parseInt(monomial[i].substring(monomial[i].indexOf('^') + 1));
                         coefExp[1][i] = Integer.toString(exp);
                     } else coefExp[1][i] = "1";
                 }
-            } else if (!monomial[i].contains("x")) {
+            }
+
+            //monomis amb exponent 0
+            else if (!monomial[i].contains("x")) {
                 coef = Integer.parseInt(monomial[i]);
                 coefExp[0][i] = Integer.toString(coef);
                 coefExp[1][i] = "0";
