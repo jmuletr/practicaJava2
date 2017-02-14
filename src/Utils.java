@@ -285,20 +285,27 @@ class Utils {
 
     static float[] secondRoot(Polynomial p) {
         float[] results = new float[p.coef.length - 1];
+        //assignam els monomis a la variable corresponent
         float a = p.coef[0];
         float b = p.coef[1];
         float c = p.coef[2];
+        //comprovam el nombre de solucions
         float disc = b * b - 4 * a * c;
+        //dos solucions
         if (disc > 0) {
             results[0] = ((-1 * b) + (float) Math.sqrt(disc)) / (2 * a);
             results[1] = ((-1 * b) - (float) Math.sqrt(disc)) / (2 * a);
             Arrays.sort(results);
             return results;
-        } else if (disc == 0) {
+        }
+        //una solucio
+        else if (disc == 0) {
             results = new float[(p.coef.length - 1) / 2];
             results[0] = ((-1 * b) + (float) Math.sqrt(disc)) / (2 * a);
             return results;
-        } else if (disc < 0) {
+        }
+        //cap solucio
+        else if (disc < 0) {
             return null;
         }
         return null;
