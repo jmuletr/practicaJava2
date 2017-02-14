@@ -125,14 +125,17 @@ public class Polynomial {
             if (result[1].coef[position] == 0) {
                 position++;
             }
-
+            //es treu el coeficient
             operations[0][position + p2.coef.length - 1] = result[1].coef[position] / p2.coef[0];
+            //operacions per treure els valors a operar amb el residu
             for (int i = 0; i < p2.coef.length; i++) {
                 operations[1][count + i] = operations[0][position + (this.coef.length -
                         (this.coef.length - (p2.coef.length - 1)))] * p2.coef[i] * -1;
             }
+            //es suma el residu tret amb el bucle anterior per seguir amb les operacions i anar llevant monomis
             result[1] = result[1].add(new Polynomial(operations[1]));
             operations[1][count] = 0;
+            //aumentam el contador
             count++;
         }
         result[0] = new Polynomial(operations[0]);
