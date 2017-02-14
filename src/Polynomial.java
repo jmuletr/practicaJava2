@@ -115,13 +115,17 @@ public class Polynomial {
         int count = 0;
         float[][] operations = new float[2][this.coef.length];
         result[1] = new Polynomial(this.coef);
+        //si el primer polinomi te menos exponen que el segon no es pot dividir i es retorna null
         if (this.coef.length < p2.coef.length) {
             return null;
         }
+        //mentres el contador es menor que la diferencia dels dos polinomes es fan operacions
         while (count < this.coef.length - p2.coef.length + 1) {
+            //es salten els monomis amb valor 0 del residu
             if (result[1].coef[position] == 0) {
                 position++;
             }
+
             operations[0][position + p2.coef.length - 1] = result[1].coef[position] / p2.coef[0];
             for (int i = 0; i < p2.coef.length; i++) {
                 operations[1][count + i] = operations[0][position + (this.coef.length -
