@@ -153,14 +153,18 @@ class Utils {
         String[] order = new String[s[0].length];
         int[] IntArray = new int[order.length];
 
+        //omplim un nou array de int amb els valors dels exponents transformats de string a int per a poder ordenarlos
         for (int i = 0; i < order.length; i++) {
             IntArray[i] = Integer.parseInt(s[1][i]);
         }
+        //ordenam els valors de major a menor
         Arrays.sort(IntArray);
+        //omplim el array order amb els valors de intArray pasanlos a string
         for (int i = order.length - 1, x = 0; i >= 0; i--, x++) {
             order[x] = Integer.toString(IntArray[i]);
         }
 
+        //ordenam els monomis mantenguent el valor del monomi amb la mateixa posicio que el seu exponent
         for (int i = 0; i < order.length; i++) {
             for (int x = 0; x < order.length; x++) {
                 if (order[i].equalsIgnoreCase(s[1][x])) {
