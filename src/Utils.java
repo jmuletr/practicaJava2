@@ -182,6 +182,8 @@ class Utils {
     private static String[][] add(String[][] s) {
         int val1, val2;
         for (int i = 0; i < s[0].length - 1; i++) {
+            //comprovam si els dos monomis correlatius tenen el mateix exponent per sumarlos i eliminar el primer
+            //i deixar el segon amb el resultat de l'operacio
             if (Integer.parseInt(s[1][i]) == Integer.parseInt(s[1][i + 1])) {
                 val1 = Integer.parseInt(s[0][i]);
                 val2 = Integer.parseInt(s[0][i + 1]);
