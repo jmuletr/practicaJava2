@@ -119,6 +119,7 @@ public class Polynomial {
         if (this.coef.length < p2.coef.length) {
             return null;
         }
+
         //mentres el contador es menor que la diferencia dels dos polinomes es fan operacions
         while (count < this.coef.length - p2.coef.length + 1) {
             //es salten els monomis amb valor 0 del residu
@@ -132,12 +133,14 @@ public class Polynomial {
                 operations[1][count + i] = operations[0][position + (this.coef.length -
                         (this.coef.length - (p2.coef.length - 1)))] * p2.coef[i] * -1;
             }
+
             //es suma el residu tret amb el bucle anterior per seguir amb les operacions i anar llevant monomis
             result[1] = result[1].add(new Polynomial(operations[1]));
             operations[1][count] = 0;
             //aumentam el contador
             count++;
         }
+
         result[0] = new Polynomial(operations[0]);
         return result;
     }
@@ -146,7 +149,6 @@ public class Polynomial {
     public float[] roots() {
         int numExp = Utils.monTotal(this.coefStr);
         float[] results = new float[this.coef.length - 1];
-        Arrays.fill(results, 0);
         // polinomis simples
         if (numExp == 2 && this.coef[this.coef.length - 1] != 0) {
             results = Utils.simpleRoot(this);
