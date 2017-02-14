@@ -199,6 +199,7 @@ class Utils {
         boolean y = false;
         //notNull
         int nN = 0;
+        //sercam la posicio del array que no sigui null amb major exponent
         for (int i = 0; !y; i++) {
             if (s[0][i] != null) {
                 nN = i;
@@ -206,20 +207,27 @@ class Utils {
             }
         }
 
+        //rellenam el array de float amb el valor del monomi a la posicio que correspon amb l'exponent.
         int maxExp = Integer.parseInt(s[1][nN]);
+        //contador per recorre les posicions del array s
         int counter = 0;
+        //contador per recorre les posicions de coef
         int counter2 = 0;
         float[] coef = new float[maxExp + 1];
         while (counter2 < Integer.parseInt(s[1][nN]) + 1) {
             if (counter < s[0].length) {
+                //comprovam que el valor no sigui null
                 if (s[0][counter] != null) {
                     if (maxExp == Integer.parseInt(s[1][counter])) {
                         coef[counter2] = Integer.parseInt(s[0][counter]);
                         counter++;
                         counter2++;
                         maxExp--;
-                    } else {
+                    }
+                    //si es null posam un 0 dins l'array
+                    else {
                         coef[counter2] = 0;
+                        //decrementam maxExp per coneixer el exponent actual
                         maxExp--;
                         counter2++;
                     }
