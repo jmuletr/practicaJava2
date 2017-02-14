@@ -238,6 +238,7 @@ class Utils {
     }
 
     static int monTotal(String s) {
+        //funcio per contar el nombre de monomis que no tenen valor 0
         s = s.replace("- ", "-");
         s = s.replace("+ ", "+");
         String[] monomial = s.split(" ");
