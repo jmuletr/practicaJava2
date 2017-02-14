@@ -256,6 +256,7 @@ class Utils {
             results[0] = p.coef[p.coef.length - 1];
             return results;
         } else if (p.coef.length - 1 > 1) {
+            //comprovacio si es pot resoldre l'arrel amb exponent parell on es tindran 2 solucions si es pot resoldre
             if ((p.coef.length - 1) % 2 == 0) {
                 if (p.coef[p.coef.length - 1] < 1) {
                     p.coef[p.coef.length - 1] *= -1;
@@ -267,6 +268,7 @@ class Utils {
                 results[0] = x * -1;
                 return results;
             }
+            //comprovacio de les arrels amb exponent imparell on tindran una solucio si es pot resoldre
             if ((p.coef.length - 1) % 2 != 0) {
                 if (p.coef[p.coef.length - 1] < 0) {
                     return null;
