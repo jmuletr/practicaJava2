@@ -6,34 +6,44 @@ public class Polynomial {
 
     // Constructor per defecte. Genera un polinomi zero
     public Polynomial() {
+        //tornam string 0
         this.coefStr = "0";
     }
 
     // Constructor a partir dels coeficients del polinomi en forma d'array
     public Polynomial(float[] cfs) {
+        //Cridam les funcions fToString per transformar els float a string
         this.coefStr = Utils.fToString(cfs);
         this.coef = cfs;
     }
 
     // Constructor a partir d'un string
     public Polynomial(String s) {
+        //identificam cada monomi del string
         String[][] cfs = Utils.identifyFact(s);
+        //transformam els monomis en un array de float
         this.coef = Utils.sToFloat(cfs);
+        //transformam els float a string
         this.coefStr = Utils.fToString(this.coef);
     }
 
     // Suma el polinomi amb un altre. No modifica el polinomi actual (this). Genera un de nou
     public Polynomial add(Polynomial p) {
+        //si el primer polinomi es 0 no fa falta sumar res i es retorna p
         if (this.coefStr == "0") {
             Polynomial polyAdd = new Polynomial(p.coefStr);
             return polyAdd;
         }
+
+        //es posa el polinomi mes gran a la variable p1 i el mes petit a p2
         String p1 = this.coefStr;
         String p2 = p.coefStr;
         if (this.coef.length < p.coef.length) {
             p1 = p.coefStr;
             p2 = this.coefStr;
         }
+
+        //es comproba si p2 comensa per mes o menys
         if (!(p2.matches("\\s[-]\\s\\d*[x].*"))) {
             if (p2.charAt(0) == '-') {
                 String s2 = " - " + p2.substring(1);
@@ -43,6 +53,8 @@ public class Polynomial {
                 p2 = s2;
             }
         }
+
+        //es junten els string dels dos polinomis i es crea un de nou amb la suma dels dos
         String s2 = p1 + "" + p2;
         Polynomial polyAdd = new Polynomial(s2);
         return polyAdd;
@@ -50,16 +62,19 @@ public class Polynomial {
 
     // Multiplica el polinomi amb un altre. No modifica el polinomi actual (this). Genera un de nou
     public Polynomial mult(Polynomial p2) {
+        //variables de la funcio i ordenacio de pol1 i pol2 depenguent de la longitud del array
         float[] pol1 = this.coef;
         float[] pol2 = p2.coef;
         int maxExp = pol1.length + pol2.length - 1;
         float[] operations = new float[maxExp];
+        Polynomial p;
         Polynomial answer = new Polynomial();
         if (this.coef.length < p2.coef.length) {
             pol1 = p2.coef;
             pol2 = this.coef;
         }
-        Polynomial p;
+
+        //bucles per recorre totes les posicions dels dos polinomis
         for (int x = 0; x < pol1.length; x++) {
             if (pol1[x] == 0) {
                 continue;
