@@ -315,7 +315,7 @@ class Utils {
         float[] results = new float[pol.coef.length - 1];
         float[] secondGrade = {pol.coef[0], pol.coef[2], pol.coef[4]};
         Polynomial p = new Polynomial(secondGrade);
-        float[] results2 = new float[(pol.coef.length - 1) / 2];
+        float[] results2;
         //guardam el resultat de la arrel biquadrada transformada en arrel de segon grau
         results2 = Utils.secondRoot(p);
         //si ens retorna 2 resultats tindrem 4 resultats
@@ -406,7 +406,7 @@ class Utils {
         return null;
     }
 
-    static int[] div(int d, int c) {
+    private static int[] div(int d, int c) {
         int count = c;
         int[] divs = new int[2];
         //funcio que serca divisors de la variable d a partir del valor de c
