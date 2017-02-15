@@ -316,13 +316,16 @@ class Utils {
         float[] secondGrade = {pol.coef[0], pol.coef[2], pol.coef[4]};
         Polynomial p = new Polynomial(secondGrade);
         float[] results2 = new float[(pol.coef.length - 1) / 2];
+        //guardam el resultat de la arrel biquadrada transformada en arrel de segon grau
         results2 = Utils.secondRoot(p);
+        //si ens retorna 2 resultats tindrem 4 resultats
         if (results2.length == 2) {
             for (int i = 0, x = 3; i < 2; i++, x--) {
                 results[i] = (float) Math.sqrt(results2[i]);
                 results[x] = (float) Math.sqrt(results2[i]) * -1;
             }
         }
+        //si ens retorna 1 resultat tindrem 2 resultat a la bicuadrada
         if (results2.length == 1) {
             results = new float[2];
             results[0] = (float) Math.sqrt(results2[0]);
@@ -357,12 +360,15 @@ class Utils {
                     tempCoef[j] = resultPol;
                 }
             }
+            //si el resultat final es 0 el valor de valX es un resultat i podem eliminar un monomi de la arrel
             if (resultPol == 0) {
                 pResults.add((float) valX[0]);
                 temp = new Polynomial(tempCoef);
                 coeficients = temp.coef;
                 tempCoef = new float[tempCoef.length - 1];
-            } else {
+            }
+            //provam el valor de valX com a nombre negatiu
+            else {
                 //Recorrer els coeficients amb x negatiu
                 for (int j = 0; j < coeficients.length; j++) {
                     resultPol = resultPol * valX[1] + coeficients[j];
@@ -377,13 +383,17 @@ class Utils {
                     tempCoef = new float[tempCoef.length - 1];
                 }
             }
+            //assignam a count el darrer resultat trobat de manera positiva
             count = valX[0] + 1;
+            //quan ens quedi una arrel de segon grau la resolem amb la funcio secondRoot
             if (temp.coef.length == 3) {
                 float[] secondG = secondRoot(temp);
                 for (int i = 0; i < secondG.length; i++) {
                     pResults.add(secondG[i]);
                 }
             }
+            //en acabar generam un array de tantes posicions com resultats em trobat i el rellenam amb els
+            //resultats per a despres ordenarlos de menor a major
             if (pResults.size() == p.coef.length - 1) {
                 float[] results = new float[pResults.size()];
                 for (int i = 0; i < pResults.size(); ++i) {
@@ -399,6 +409,7 @@ class Utils {
     static int[] div(int d, int c) {
         int count = c;
         int[] divs = new int[2];
+        //funcio que serca divisors de la variable d a partir del valor de c
         while (count < d) {
             if (d % count == 0) {
                 divs[0] = count;
