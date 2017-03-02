@@ -404,6 +404,13 @@ class Utils {
                 }
                 sec = true;
             }
+            if (temp.coef.length == 5 && temp.coef[1] == 0) {
+                float[] simple = Utils.bicuadRoot(temp);
+                for (int i = 0; i < simple.length; i++) {
+                    pResults.add(simple[i]);
+                }
+                sec = true;
+            }
 
             //en acabar generam un array de tantes posicions com resultats em trobat i el rellenam amb els
             //resultats per a despres ordenarlos de menor a major

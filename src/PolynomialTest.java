@@ -2,6 +2,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Created by pnegre on 30/12/16.
+ */
 public class PolynomialTest {
 
     @Test
@@ -22,9 +25,6 @@ public class PolynomialTest {
 
         p = new Polynomial(new float[]{0, 0, 0});
         assertEquals(new Polynomial("0"), p);
-
-        p = new Polynomial(new float[]{3, 1, 0, 0, -20, -8});
-        assertEquals("3x^5 + x^4 - 20x - 8", p.toString());
 
         p = new Polynomial(new float[]{-6, 0, 0, 20, -8});
         assertEquals("-6x^4 + 20x - 8", p.toString());
@@ -62,10 +62,6 @@ public class PolynomialTest {
     @Test
     public void sumes1() {
         Polynomial p1, p2, p3;
-
-        p1 = new Polynomial("-6x^10 + 36x^8 - 48x^6");
-        p2 = new Polynomial("-91x^5 + 546x^3 - 728x");
-        assertEquals("-6x^10 + 36x^8 - 48x^6 - 91x^5 + 546x^3 - 728x", p1.add(p2).toString());
 
         p1 = new Polynomial("2x^2 + 3x - 5");
         p2 = new Polynomial("7x^2 + 10");
@@ -151,8 +147,28 @@ public class PolynomialTest {
     }
 
     @Test
+    public void rootsRuffini() {
+        Polynomial p;
+
+        p = new Polynomial("x^4 + 12x^3 + 11x^2 - 132x + 108");
+        assertEqualsFloats(new float[]{-9, -6, 1, 2}, p.roots());
+
+        p = new Polynomial("x^3 - 8x^2 -237x + 36");
+        assertEqualsFloats(new float[]{-12f, 0.15114f, 19.84885f}, p.roots());
+
+        p = new Polynomial("x^4 + 1091x^3 + 90632x^2 - 372788x - 4788000");
+        assertEqualsFloats(new float[]{-1000, -94.362f, -5.6379f, 9}, p.roots());
+
+        p = new Polynomial("x^7 + 89x^6 - 90x^5 + 10x^2 +890x - 900");
+        assertEqualsFloats(new float[]{-90f, -1.5849f, 1f}, p.roots());
+    }
+
+    @Test
     public void roots() {
         Polynomial p;
+
+        p = new Polynomial("x - 9");
+        assertEqualsFloats(new float[]{9}, p.roots());
 
         p = new Polynomial("x^2 - 4");
         assertEqualsFloats(new float[]{-2, 2}, p.roots());
@@ -160,8 +176,6 @@ public class PolynomialTest {
         p = new Polynomial("2x^2 + 4x - 30");
         assertEqualsFloats(new float[]{-5, 3}, p.roots());
 
-        p = new Polynomial("x - 9");
-        assertEqualsFloats(new float[]{9}, p.roots());
 
         // Sense solució
         p = new Polynomial("23x^2 + 90x + 100");
@@ -182,7 +196,6 @@ public class PolynomialTest {
         p = new Polynomial("x^4 - 100");
         assertEqualsFloats(new float[]{-3.1622f, 3.1622f}, p.roots());
 
-        //Math.cbrt(x) para raiz cubica
         p = new Polynomial("x^3 + 100");
         assertEqualsFloats(new float[]{(float) -4.6415}, p.roots());
 
@@ -196,8 +209,6 @@ public class PolynomialTest {
         assertNull(p.roots());
 
 
-        p = new Polynomial("x^4 + 12x^3 + 11x^2 - 132x + 108");
-        assertEqualsFloats(new float[]{-9, -6, 1, 2}, p.roots());
     }
 
     private void assertEqualsFloats(float[] a1, float[] a2) {
