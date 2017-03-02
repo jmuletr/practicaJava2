@@ -342,13 +342,14 @@ class Utils {
         pResults = new ArrayList<Float>();
         float[] coeficients = temp.coef;
         int[] valX;
+        boolean sec = false;
         float[] tempCoef = new float[coeficients.length - 1];
-        while (count < p.coef[p.coef.length - 1]) {
+        while (count < Math.abs(p.coef[p.coef.length - 1])) {
             //Valor de x
-            if (p.coef[p.coef.length - 1] > 0) {
-                valX = div((int) p.coef[p.coef.length - 1], count);
+            if (Math.abs(p.coef[p.coef.length - 1]) > 0) {
+                valX = div((int) Math.abs(p.coef[p.coef.length - 1]), count);
             } else {
-                valX = div((int) (p.coef[p.coef.length - 1]) * -1, count);
+                valX = div((int) (Math.abs(p.coef[p.coef.length - 1])) * -1, count);
             }
             //Coeficient del polinomi
             float resultPol = 0;
@@ -369,6 +370,8 @@ class Utils {
             }
             //provam el valor de valX com a nombre negatiu
             else {
+                Arrays.fill(tempCoef, 0);
+                resultPol = 0;
                 //Recorrer els coeficients amb x negatiu
                 for (int j = 0; j < coeficients.length; j++) {
                     resultPol = resultPol * valX[1] + coeficients[j];
@@ -377,7 +380,7 @@ class Utils {
                     }
                 }
                 if (resultPol == 0) {
-                    pResults.add((float) valX[0]);
+                    pResults.add((float) valX[1]);
                     temp = new Polynomial(tempCoef);
                     coeficients = temp.coef;
                     tempCoef = new float[tempCoef.length - 1];
@@ -391,10 +394,20 @@ class Utils {
                 for (int i = 0; i < secondG.length; i++) {
                     pResults.add(secondG[i]);
                 }
+                sec = true;
             }
+            int numExp = Utils.monTotal(temp.coefStr);
+            if (numExp == 2 && temp.coef[temp.coef.length - 1] != 0) {
+                float[] simple = Utils.simpleRoot(temp);
+                for (int i = 0; i < simple.length; i++) {
+                    pResults.add(simple[i]);
+                }
+                sec = true;
+            }
+
             //en acabar generam un array de tantes posicions com resultats em trobat i el rellenam amb els
             //resultats per a despres ordenarlos de menor a major
-            if (pResults.size() == p.coef.length - 1) {
+            if (sec) {
                 float[] results = new float[pResults.size()];
                 for (int i = 0; i < pResults.size(); ++i) {
                     results[i] = pResults.get(i);
